@@ -13,7 +13,7 @@ export default function FooterSection({ mainMenu }) {
                     <div className="col-xl-3 col-lg-4 col-md-6 col-sm-10">
                         <div className="footer-widget">
                             <div className="logo">
-                                <a href="https://buttercms.com">
+                                <a href="/">
                                     <Image
                                         width={200}
                                         height={50}
