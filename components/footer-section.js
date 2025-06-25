@@ -1,10 +1,10 @@
 import Image from "next/image";
 
 export default function FooterSection({ mainMenu }) {
-    const links = mainMenu.map(link => ({
-        ...link,
-        url: link.url[0] === "#" ? `/${link.url}` : link.url})
-    )
+  const links = mainMenu.map((link) => ({
+    ...link,
+    url: link.url[0] === "#" ? `/${link.url}` : link.url,
+  }));
 
     return (
         <footer className="footer pt-120">

@@ -5,7 +5,8 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "next lint",
+    "lint:fix": "next lint --fix"
   },
   "dependencies": {
     "@popperjs/core": "^2.11.8",
@@ -24,7 +25,10 @@
   "devDependencies": {
     "eslint": "^8.57.0",
     "eslint-config-next": "^14.1.0",
+    "eslint-config-prettier": "^10.1.5",
+    "eslint-plugin-prettier": "^5.5.1",
     "glob": "^10.3.10",
+    "prettier": "^3.6.1",
     "rimraf": "^5.0.5"
   },
   "engines": {

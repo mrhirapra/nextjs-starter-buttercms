@@ -19,15 +19,14 @@ export default function PostPreviewCondensed({
               fill
               sizes="100vw"
               style={{
-                objectFit: "cover"
-              }} />
+                objectFit: "cover",
+              }}
+            />
           </div>
         )}
         <div className="blog-body">
           <h5 className="package-name">
-            <Link href={`/blog/${slug}`}>
-              {title}
-            </Link>
+            <Link href={`/blog/${slug}`}>{title}</Link>
           </h5>
           <p>{excerpt}</p>
         </div>

@@ -5,22 +5,22 @@ import Image from "next/image";
 import MainMenu from "./main-menu/main-menu";
 
 export default function HeaderSection({ mainMenu }) {
-    const [isNavbarSticky, setIsNavbarSticky] = useState(false);
-    const navbarAreaEl = useRef(null);
+  const [isNavbarSticky, setIsNavbarSticky] = useState(false);
+  const navbarAreaEl = useRef(null);
 
-    function fixNavBar() {
-        if (navbarAreaEl.current) {
-            setIsNavbarSticky(window.pageYOffset > navbarAreaEl.current.offsetTop)
-        }
+  function fixNavBar() {
+    if (navbarAreaEl.current) {
+      setIsNavbarSticky(window.pageYOffset > navbarAreaEl.current.offsetTop);
     }
+  }
 
-    useEffect(() => {
-        window.addEventListener('scroll', fixNavBar);
+  useEffect(() => {
+    window.addEventListener("scroll", fixNavBar);
 
-        return () => {
-            window.removeEventListener('scroll', fixNavBar);
-        }
-    }, []);
+    return () => {
+      window.removeEventListener("scroll", fixNavBar);
+    };
+  }, []);
 
     return (
         <header className="header">
@@ -46,6 +46,9 @@ export default function HeaderSection({ mainMenu }) {
                     </div>
                 </div>
             </div>
-        </header>
-    );
+          </div>
+        </div>
+      </div>
+    </header>
+  );
 }

@@ -1,8 +1,8 @@
 import Image from "next/image";
 import Link from "next/link";
 
-import HumanDate from "@/components/human-date"
-import AuthorCard from '@/components/author-card';
+import HumanDate from "@/components/human-date";
+import AuthorCard from "@/components/author-card";
 
 export default function PostsPreview({
   title,
@@ -12,7 +12,7 @@ export default function PostsPreview({
   author,
   tags,
   excerpt,
-  slug
+  slug,
 }) {
   return (
     <div className="col-12 col-lg-6">
@@ -26,9 +26,10 @@ export default function PostsPreview({
               <AuthorCard author={author} />
             </li>
             <li>
-              <i className="lni lni-calendar"></i> <HumanDate dateString={date} />
+              <i className="lni lni-calendar"></i>{" "}
+              <HumanDate dateString={date} />
             </li>
-            {tags.map(tag => (
+            {tags.map((tag) => (
               <li key={tag.slug}>
                 <Link href={`/blog/tag/${tag.slug}`}>
                   <i className="lni lni-tag"></i> {tag.name}
@@ -45,12 +46,15 @@ export default function PostsPreview({
               fill
               sizes="100vw"
               style={{
-                objectFit: "cover"
-              }} />
+                objectFit: "cover",
+              }}
+            />
           </div>
         )}
-        <div className="blog-roll-card-body prose" dangerouslySetInnerHTML={{ __html: excerpt }}>
-        </div>
+        <div
+          className="blog-roll-card-body prose"
+          dangerouslySetInnerHTML={{ __html: excerpt }}
+        ></div>
         <div className="blog-roll-card-footer text-center">
           <Link href={`/blog/${slug}`} className="main-btn btn-hover">
             Read More
