@@ -1,8 +1,9 @@
 import App from "next/app";
 import Head from "next/head";
 import Router from "next/router";
-import { useRouter } from "next/router";
+
 import { useEffect, useState } from "react";
+import { useRouter } from "next/router";
 
 import FooterSection from "@/components/footer-section";
 import HeaderSection from "@/components/header-section";

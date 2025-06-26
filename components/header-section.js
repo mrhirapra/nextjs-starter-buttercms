@@ -1,4 +1,5 @@
 import Image from "next/image";
+
 import { useEffect, useRef, useState } from "react";
 
 import MainMenu from "./main-menu/main-menu";
