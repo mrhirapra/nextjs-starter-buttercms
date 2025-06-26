@@ -1,17 +1,20 @@
-import Link from "next/link";
-
 import camelcaseKeys from "camelcase-keys";
 
-import PostsList from "@/components/blog/posts-list";
+import Link from "next/link";
 
-import { getPostsData, getCategories } from "@/lib/api";
+import { getCategories, getPostsData } from "@/lib/api";
+
 import CategoriesWidget from "@/components/blog/categories-widget";
+import PostsList from "@/components/blog/posts-list";
 import SearchWidget from "@/components/blog/search-widget";
 
-export default function Category({ posts, categories, slug }) {
+export default function Category({ categories, posts, slug }) {
   return (
     <>
-      <section id="blog-roll" className="blog-roll-nav">
+      <section
+        className="blog-roll-nav"
+        id="blog-roll"
+      >
         <div className="container">
           <div className="row justify-content-center">
             <div className="col-12">
@@ -49,11 +52,16 @@ export default function Category({ posts, categories, slug }) {
 
 export async function getStaticProps({ params: { slug } }) {
   try {
-    const blogPosts = (await getPostsData({ category: slug })).posts;
-    const categories = await getCategories();
+    // const blogPosts = (await getPostsData({ category: slug })).posts;
+    // const categories = await getCategories();
+    // TODO: test
+    const [blogPosts, categories] = await Promise.all([
+      getPostsData({ category: slug }),
+      getCategories(),
+    ]);
 
     return {
-      props: { posts: camelcaseKeys(blogPosts), categories, slug },
+      props: { categories, posts: camelcaseKeys(blogPosts.posts), slug },
       revalidate: 1,
     };
   } catch (e) {
@@ -71,21 +79,21 @@ export async function getStaticPaths() {
       const categories = await getCategories();
 
       return {
-        paths: categories.map((category) => `/blog/category/${category.slug}`),
         fallback: true,
+        paths: categories.map((category) => `/blog/category/${category.slug}`),
       };
     } catch (e) {
       console.error("Couldn't load categories.", e);
 
       return {
-        paths: [],
         fallback: false,
+        paths: [],
       };
     }
   }
 
   return {
-    paths: [],
     fallback: false,
+    paths: [],
   };
 }

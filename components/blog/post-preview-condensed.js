@@ -1,12 +1,12 @@
-import Link from "next/link";
 import Image from "next/image";
+import Link from "next/link";
 
 export default function PostPreviewCondensed({
-  title,
   coverImage,
   coverImageAlt,
   excerpt,
   slug,
+  title,
 }) {
   return (
     <div className="col-lg-4 col-md-8 col-sm-10">
@@ -14,10 +14,10 @@ export default function PostPreviewCondensed({
         {coverImage && (
           <div className="blog-header">
             <Image
-              src={coverImage}
               alt={coverImageAlt}
               fill
               sizes="100vw"
+              src={coverImage}
               style={{
                 objectFit: "cover",
               }}
@@ -31,7 +31,10 @@ export default function PostPreviewCondensed({
           <p>{excerpt}</p>
         </div>
         <div className="blog-footer">
-          <Link href={`/blog/${slug}`} className="main-btn btn-hover">
+          <Link
+            className="main-btn btn-hover"
+            href={`/blog/${slug}`}
+          >
             Read More
           </Link>
         </div>

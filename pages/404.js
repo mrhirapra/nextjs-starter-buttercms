@@ -2,11 +2,14 @@ import Image from "next/image";
 
 export default function Custom404() {
   console.error(
-    "Your Butter token might be set to an invalid value. Please verify your token is correct."
+    "Your Butter token might be set to an invalid value. Please verify your token is correct.",
   );
 
   return (
-    <section id="home" className="hero-section">
+    <section
+      className="hero-section"
+      id="home"
+    >
       <div className="container">
         <div className="row align-items-center">
           <div className="col-xl-6 col-lg-6 col-md-10">
@@ -20,14 +23,14 @@ export default function Custom404() {
           </div>
           <div className="col-xxl-6 col-xl-6 col-lg-6">
             <Image
-              src="https://cdn.buttercms.com/9bPtzdJ6QSWkySNjlmyR"
               alt="Logo"
-              width={180}
               height={45}
+              src="https://cdn.buttercms.com/9bPtzdJ6QSWkySNjlmyR"
               style={{
-                maxWidth: "300px",
                 height: "auto",
+                maxWidth: "300px",
               }}
+              width={180}
             />
             <div className="hero-image text-center text-lg-end"></div>
           </div>

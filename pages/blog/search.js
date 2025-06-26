@@ -1,17 +1,17 @@
-import Link from "next/link";
-
 import camelcaseKeys from "camelcase-keys";
 
-import PostsList from "@/components/blog/posts-list";
+import Link from "next/link";
 
 import { getCategories, searchPosts } from "@/lib/api";
+
 import CategoriesWidget from "@/components/blog/categories-widget";
+import PostsList from "@/components/blog/posts-list";
 import SearchWidget from "@/components/blog/search-widget";
 
-export default function Search({ posts, categories, query }) {
+export default function Search({ categories, posts, query }) {
   return (
     <>
-      <section id="blog-roll" className="blog-roll-nav">
+      <section className="blog-roll-nav">
         <div className="container">
           <div className="row justify-content-center">
             <div className="col-12">
@@ -48,10 +48,15 @@ export default function Search({ posts, categories, query }) {
 }
 
 export async function getServerSideProps({ query: { query } }) {
-  const blogPosts = await searchPosts({ query });
-  const categories = await getCategories();
+  // const blogPosts = await searchPosts({ query });
+  // const categories = await getCategories();
+  // TODO: test
+  const [blogPosts, categories] = await Promise.all([
+    searchPosts({ query }),
+    getCategories(),
+  ]);
 
   return {
-    props: { posts: camelcaseKeys(blogPosts), categories, query },
+    props: { categories, posts: camelcaseKeys(blogPosts), query },
   };
 }

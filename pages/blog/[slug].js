@@ -1,19 +1,21 @@
-import Image from "next/image";
-import Head from "next/head";
-import Link from "next/link";
-import { useRouter } from "next/router";
-import ErrorPage from "next/error";
 import camelcaseKeys from "camelcase-keys";
 
-import { getPost, getPostsData, getCategories } from "@/lib/api";
+import ErrorPage from "next/error";
+import Head from "next/head";
+import Image from "next/image";
+import Link from "next/link";
 
-import HumanDate from "@/components/human-date";
-import CategoriesWidget from "@/components/blog/categories-widget";
-import SearchWidget from "@/components/blog/search-widget";
+import { getCategories, getPost, getPostsData } from "@/lib/api";
+
+import { useRouter } from "next/router";
+
 import AuthorCard from "@/components/author-card";
+import CategoriesWidget from "@/components/blog/categories-widget";
+import HumanDate from "@/components/human-date";
 import Preloader from "@/components/preloader";
+import SearchWidget from "@/components/blog/search-widget";
 
-export default function BlogPost({ post, categories }) {
+export default function BlogPost({ categories, post }) {
   const router = useRouter();
   if (router.isFallback) {
     return <Preloader />;
@@ -27,27 +29,66 @@ export default function BlogPost({ post, categories }) {
     <>
       <Head>
         <meta charSet="utf-8" />
-        <meta httpEquiv="x-ua-compatible" content="ie=edge" />
+        <meta
+          content="ie=edge"
+          httpEquiv="x-ua-compatible"
+        />
         <title>{post.seoTitle}</title>
-        <meta name="description" content={post.metaDescription} />
-        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <meta
+          content={post.metaDescription}
+          name="description"
+        />
+        <meta
+          content="width=device-width, initial-scale=1"
+          name="viewport"
+        />
         <link
+          href="https://buttercms.com/static/v2/images/favicon.png"
           rel="shortcut icon"
           type="image/x-icon"
-          href="https://buttercms.com/static/v2/images/favicon.png"
         />
 
-        <meta property="og:type" content="website" />
-        <meta property="og:url" content={post.url} />
-        <meta property="og:title" content={post.seoTitle} />
-        <meta property="og:image" content={post.featuredImage} />
-        <meta property="og:description" content={post.metaDescription} />
-        <meta name="twitter:site" content="@ButterCMS" />
-        <meta name="twitter:creator" content="@ButterCMS" />
-        <meta name="twitter:title" content="ButterCMS Blog" />
-        <meta name="twitter:description" content={post.metaDescription} />
+        <meta
+          content="website"
+          property="og:type"
+        />
+        <meta
+          content={post.url}
+          property="og:url"
+        />
+        <meta
+          content={post.seoTitle}
+          property="og:title"
+        />
+        <meta
+          content={post.featuredImage}
+          property="og:image"
+        />
+        <meta
+          content={post.metaDescription}
+          property="og:description"
+        />
+        <meta
+          content="@ButterCMS"
+          name="twitter:site"
+        />
+        <meta
+          content="@ButterCMS"
+          name="twitter:creator"
+        />
+        <meta
+          content="ButterCMS Blog"
+          name="twitter:title"
+        />
+        <meta
+          content={post.metaDescription}
+          name="twitter:description"
+        />
       </Head>
-      <section id="blog-header" className="single-post-nav">
+      <section
+        className="single-post-nav"
+        id="blog-header"
+      >
         <div className="container">
           <div className="row justify-content-center">
             <div className="col-12">
@@ -97,10 +138,10 @@ export default function BlogPost({ post, categories }) {
                 {post.featuredImage && (
                   <div className="single-post-thumbnail">
                     <Image
-                      src={post.featuredImage}
                       alt={post.featuredImageAlt}
                       fill
                       sizes="100vw"
+                      src={post.featuredImage}
                       style={{
                         objectFit: "cover",
                       }}
@@ -127,9 +168,14 @@ export default function BlogPost({ post, categories }) {
 
 export async function getStaticProps({ params }) {
   try {
-    const post = await getPost(params.slug);
-    const categories = await getCategories();
-    return { props: { post: camelcaseKeys(post), categories } };
+    // const post = await getPost(params.slug);
+    // const categories = await getCategories();
+    //  TODO: test
+    const [post, categories] = await Promise.all([
+      getPost(params.slug),
+      getCategories(),
+    ]);
+    return { props: { categories, post: camelcaseKeys(post) } };
   } catch (e) {
     console.error("Couldn't load post or categories data.", e);
 
@@ -147,8 +193,8 @@ export async function getStaticPaths() {
       const posts = (await getPostsData()).posts;
 
       return {
-        paths: posts.map((post) => `/blog/${post.slug}`),
         fallback: true,
+        paths: posts.map((post) => `/blog/${post.slug}`),
       };
     } catch (e) {
       console.error("Couldn't load posts.", e);
@@ -156,7 +202,7 @@ export async function getStaticPaths() {
   }
 
   return {
-    paths: [],
     fallback: false,
+    paths: [],
   };
 }

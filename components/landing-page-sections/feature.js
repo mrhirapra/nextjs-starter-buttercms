@@ -1,16 +1,16 @@
 import Image from "next/image";
 
-export default function Feature({ headline, description, icon }) {
+export default function Feature({ description, headline, icon }) {
   return (
     <div className="col-lg-6 col-md-6">
       <div className="single-feature">
         <div className="feature-icon">
           {icon && (
             <Image
-              src={icon}
               alt=""
               fill
               sizes="100vw"
+              src={icon}
               style={{
                 objectFit: "cover",
               }}

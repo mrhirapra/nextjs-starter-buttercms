@@ -20,7 +20,10 @@ export default function ScrollToButtonButton() {
   return (
     <>
       {hasScrollToTopButton && (
-        <a href="#" className="scroll-top btn-hover">
+        <a
+          className="scroll-top btn-hover"
+          href="#"
+        >
           <i className="lni lni-chevron-up"></i>
         </a>
       )}

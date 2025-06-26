@@ -1,6 +1,4 @@
-export default function MissingSection({ type, ...sectionData }) {
-  console.log(`Missing section ${type} data ${sectionData}`);
-
+export default function MissingSection({ type }) {
   return (
     <div>
       <h3>Missing a template for {type}</h3>

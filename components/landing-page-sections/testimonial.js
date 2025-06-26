@@ -1,4 +1,4 @@
-export default function Testimonial({ quote, name, title }) {
+export default function Testimonial({ name, quote, title }) {
   return (
     <div className="single-testimonial">
       <div className="quote">

@@ -1,17 +1,20 @@
-import Link from "next/link";
-
 import camelcaseKeys from "camelcase-keys";
 
-import PostsList from "@/components/blog/posts-list";
+import Link from "next/link";
 
-import { getPostsData, getCategories, getTags } from "@/lib/api";
+import { getCategories, getPostsData, getTags } from "@/lib/api";
+
 import CategoriesWidget from "@/components/blog/categories-widget";
+import PostsList from "@/components/blog/posts-list";
 import SearchWidget from "@/components/blog/search-widget";
 
-export default function Tag({ posts, categories, slug }) {
+export default function Tag({ categories, posts, slug }) {
   return (
     <>
-      <section id="blog-roll" className="blog-roll-nav">
+      <section
+        className="blog-roll-nav"
+        id="blog-roll"
+      >
         <div className="container">
           <div className="row justify-content-center">
             <div className="col-12">
@@ -53,7 +56,7 @@ export async function getStaticProps({ params: { slug } }) {
     const categories = await getCategories();
 
     return {
-      props: { posts: camelcaseKeys(blogPosts), categories, slug },
+      props: { categories, posts: camelcaseKeys(blogPosts), slug },
       revalidate: 1,
     };
   } catch (e) {
@@ -70,21 +73,21 @@ export async function getStaticPaths() {
       const tags = await getTags();
 
       return {
-        paths: tags.map((tag) => `/blog/tag/${tag.slug}`),
         fallback: true,
+        paths: tags.map((tag) => `/blog/tag/${tag.slug}`),
       };
     } catch (e) {
       console.error("Couldn't load tags.", e);
 
       return {
-        paths: [],
         fallback: false,
+        paths: [],
       };
     }
   }
 
   return {
-    paths: [],
     fallback: false,
+    paths: [],
   };
 }

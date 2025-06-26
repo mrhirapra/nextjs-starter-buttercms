@@ -1,18 +1,18 @@
 import Image from "next/image";
 import Link from "next/link";
 
-import HumanDate from "@/components/human-date";
 import AuthorCard from "@/components/author-card";
+import HumanDate from "@/components/human-date";
 
 export default function PostsPreview({
-  title,
+  author,
   coverImage,
   coverImageAlt,
   date,
-  author,
-  tags,
   excerpt,
   slug,
+  tags,
+  title,
 }) {
   return (
     <div className="col-12 col-lg-6">
@@ -41,10 +41,10 @@ export default function PostsPreview({
         {coverImage && (
           <div className="single-post-thumbnail">
             <Image
-              src={coverImage}
               alt={coverImageAlt}
               fill
               sizes="100vw"
+              src={coverImage}
               style={{
                 objectFit: "cover",
               }}
@@ -56,7 +56,10 @@ export default function PostsPreview({
           dangerouslySetInnerHTML={{ __html: excerpt }}
         ></div>
         <div className="blog-roll-card-footer text-center">
-          <Link href={`/blog/${slug}`} className="main-btn btn-hover">
+          <Link
+            className="main-btn btn-hover"
+            href={`/blog/${slug}`}
+          >
             Read More
           </Link>
         </div>

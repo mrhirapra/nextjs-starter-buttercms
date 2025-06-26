@@ -1,15 +1,18 @@
 import Image from "next/image";
 
 export default function Hero({
-  headline,
-  subheadline,
-  image,
   buttonLabel,
   buttonUrl,
+  headline,
+  image,
   scrollAnchorId,
+  subheadline,
 }) {
   return (
-    <section id={scrollAnchorId} className="hero-section">
+    <section
+      className="hero-section"
+      id={scrollAnchorId}
+    >
       <div className="container">
         <div className="row align-items-center">
           <div className="col-xl-6 col-lg-6 col-md-10">
@@ -17,7 +20,10 @@ export default function Hero({
               <h1>{headline}</h1>
               <p>{subheadline}</p>
 
-              <a href={buttonUrl} className="main-btn btn-hover">
+              <a
+                className="main-btn btn-hover"
+                href={buttonUrl}
+              >
                 {buttonLabel}
               </a>
               <a href="https://buttercms.com/join/">Need an account?</a>
@@ -27,15 +33,15 @@ export default function Hero({
             <div className="col-xxl-6 col-xl-6 col-lg-6">
               <div className="hero-image text-center text-lg-end">
                 <Image
-                  src={image}
-                  height={400}
-                  width={400}
                   alt=""
+                  height={400}
                   sizes="100vw"
+                  src={image}
                   style={{
-                    width: "100%",
                     height: "auto",
+                    width: "100%",
                   }}
+                  width={400}
                 />
               </div>
             </div>

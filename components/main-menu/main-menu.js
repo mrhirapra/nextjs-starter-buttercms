@@ -1,4 +1,4 @@
-import { useEffect, useState, useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 
 import MainMenuLink from "./main-menu-link";
 
@@ -9,8 +9,9 @@ export default function ManiMenu({ mainMenuLinks }) {
 
   function highlightLinks() {
     const sections = document.querySelectorAll(".page-scroll");
+    // TODO: check
     const scrollPos =
-      window.pageYOffset ||
+      window.scrollY ||
       document.documentElement.scrollTop ||
       document.body.scrollTop;
 
@@ -57,14 +58,14 @@ export default function ManiMenu({ mainMenuLinks }) {
   return (
     <>
       <button
-        className={`navbar-toggler ${isMenuActive ? "active" : ""}`}
-        type="button"
-        data-bs-toggle="collapse"
-        data-bs-target="#navbarSupportedContent"
         aria-controls="navbarSupportedContent"
         aria-expanded="false"
         aria-label="Toggle navigation"
+        className={`navbar-toggler ${isMenuActive ? "active" : ""}`}
+        data-bs-target="#navbarSupportedContent"
+        data-bs-toggle="collapse"
         onClick={() => setMenuActive(!isMenuActive)}
+        type="button"
       >
         <span className="toggler-icon"></span>
         <span className="toggler-icon"></span>
@@ -73,18 +74,21 @@ export default function ManiMenu({ mainMenuLinks }) {
 
       <div
         className="collapse navbar-collapse sub-menu-bar"
-        ref={menuLinksEl}
         id="navbarSupportedContent"
+        ref={menuLinksEl}
       >
         <div className="ms-auto">
-          <ul id="nav" className="navbar-nav ms-auto">
+          <ul
+            className="navbar-nav ms-auto"
+            id="nav"
+          >
             {mainMenuLinks.map((navLink) => (
               <MainMenuLink
-                key={navLink.url}
-                url={navLink.url}
-                label={navLink.label}
                 active={navLink.url === activeMenuLink}
                 callbackOnClick={inactivateMenu}
+                key={navLink.url}
+                label={navLink.label}
+                url={navLink.url}
               />
             ))}
           </ul>

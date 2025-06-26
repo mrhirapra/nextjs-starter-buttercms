@@ -1,13 +1,16 @@
 import Feature from "./feature";
 
 export default function Features({
-  headline,
-  subheadline,
   features,
+  headline,
   scrollAnchorId,
+  subheadline,
 }) {
   return (
-    <section id={scrollAnchorId} className="feature-section">
+    <section
+      className="feature-section"
+      id={scrollAnchorId}
+    >
       <div className="container">
         <div className="row">
           <div className="col-lg-5 col-md-10">
@@ -21,10 +24,10 @@ export default function Features({
             <div className="row">
               {features.map((feature, index) => (
                 <Feature
-                  key={index}
-                  headline={feature.headline}
                   description={feature.description}
+                  headline={feature.headline}
                   icon={feature.icon}
+                  key={index}
                 />
               ))}
             </div>

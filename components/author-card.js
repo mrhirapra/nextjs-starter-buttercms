@@ -6,8 +6,8 @@ export default function AuthorCard({ author }) {
     <a>
       {/* eslint-disable-next-line @next/next/no-img-element */}
       <img
-        src={authorAvatar}
         alt={`Profile image ${author.first_name} ${author.last_name}`}
+        src={authorAvatar}
       />
       {author.first_name} {author.last_name}
     </a>

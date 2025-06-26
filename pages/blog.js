@@ -1,17 +1,18 @@
+import camelcaseKeys from "camelcase-keys";
 import Link from "next/link";
 
-import camelcaseKeys from "camelcase-keys";
-
-import PostsList from "@/components/blog/posts-list";
-
-import { getPostsData, getCategories } from "@/lib/api";
 import CategoriesWidget from "@/components/blog/categories-widget";
+import PostsList from "@/components/blog/posts-list";
 import SearchWidget from "@/components/blog/search-widget";
+import { getCategories, getPostsData } from "@/lib/api";
 
-export default function Blog({ posts, categories }) {
+export default function Blog({ categories, posts }) {
   return (
     <>
-      <section id="blog-roll" className="blog-roll-nav">
+      <section
+        className="blog-roll-nav"
+        id="blog-roll"
+      >
         <div className="container">
           <div className="row justify-content-center">
             <div className="col-12">
@@ -49,18 +50,23 @@ export async function getStaticProps() {
 
   if (butterToken) {
     try {
-      const blogPosts = (await getPostsData()).posts;
-      const categories = await getCategories();
+      // TODO: test
+      const [blogPosts, categories] = await Promise.all([
+        getPostsData(),
+        getCategories(),
+      ]);
+      // const blogPosts = (await getPostsData()).posts;
+      // const categories = await getCategories();
 
-      return { props: { posts: camelcaseKeys(blogPosts), categories } };
+      return { props: { categories, posts: camelcaseKeys(blogPosts.posts) } };
     } catch (e) {
       console.log("Could not get posts", e);
 
       return {
-        props: { posts: [], categories: [] },
+        props: { categories: [], posts: [] },
       };
     }
   }
 
-  return { props: { posts: [], categories: [] } };
+  return { props: { categories: [], posts: [] } };
 }

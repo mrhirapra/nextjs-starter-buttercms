@@ -2,7 +2,10 @@ import Image from "next/image";
 
 export default function MissingTokenSection() {
   return (
-    <section id="home" className="hero-section">
+    <section
+      className="hero-section"
+      id="home"
+    >
       <div className="container">
         <div className="row align-items-center">
           <div className="col-xl-6 col-lg-6 col-md-10">
@@ -13,10 +16,10 @@ export default function MissingTokenSection() {
                 <code>NEXT_PUBLIC_BUTTER_CMS_API_KEY</code>.
               </p>
               <a
-                target="_blank"
-                rel="noreferrer"
-                href="https://buttercms.com/join/"
                 className="main-btn btn-hover"
+                href="https://buttercms.com/join/"
+                rel="noreferrer"
+                target="_blank"
               >
                 Get your free API token
               </a>
@@ -24,14 +27,14 @@ export default function MissingTokenSection() {
           </div>
           <div className="col-xxl-6 col-xl-6 col-lg-6">
             <Image
-              width={300}
+              alt=""
               height={300}
               src="https://cdn.buttercms.com/9bPtzdJ6QSWkySNjlmyR"
-              alt=""
               style={{
-                maxWidth: "100%",
                 height: "auto",
+                maxWidth: "100%",
               }}
+              width={300}
             />
             <div className="hero-image text-center text-lg-end"></div>
           </div>

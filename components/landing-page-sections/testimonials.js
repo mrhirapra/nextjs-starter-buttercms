@@ -4,32 +4,35 @@ import Testimonial from "./testimonial";
 
 export default function Testimonials({
   headline,
-  testimonial: testimonials,
   scrollAnchorId,
+  testimonial: testimonials,
 }) {
   useEffect(() => {
     import("tiny-slider").then(({ tns }) => {
       tns({
-        container: ".testimonial-active",
         autoplay: true,
-        autoplayTimeout: 5000,
         autoplayButtonOutput: false,
-        mouseDrag: true,
-        gutter: 0,
-        nav: false,
-        navPosition: "bottom",
+        autoplayTimeout: 5000,
+        container: ".testimonial-active",
         controls: true,
         controlsText: [
           '<i class="lni lni-chevron-left"></i>',
           '<i class="lni lni-chevron-right"></i>',
         ],
+        gutter: 0,
         items: 1,
+        mouseDrag: true,
+        nav: false,
+        navPosition: "bottom",
       });
     });
   });
 
   return (
-    <section id={scrollAnchorId} className="testimonial-section mt-100">
+    <section
+      className="testimonial-section mt-100"
+      id={scrollAnchorId}
+    >
       <div className="container">
         <div className="row justify-content-center">
           <div className="col-xl-7 col-lg-9">
@@ -42,8 +45,8 @@ export default function Testimonials({
                 {testimonials.map((testimonial, index) => (
                   <Testimonial
                     key={index}
-                    quote={testimonial.quote}
                     name={testimonial.name}
+                    quote={testimonial.quote}
                     title={testimonial.title}
                   />
                 ))}

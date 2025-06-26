@@ -1,24 +1,22 @@
-import { useEffect, useState } from "react";
-
-import Router from "next/router";
 import App from "next/app";
 import Head from "next/head";
+import Router from "next/router";
 import { useRouter } from "next/router";
-
-import { getMainMenu } from "@/lib/api";
+import { useEffect, useState } from "react";
 
 import FooterSection from "@/components/footer-section";
 import HeaderSection from "@/components/header-section";
-import ScrollToButtonButton from "@/components/scroll-to-top-button";
 import Preloader from "@/components/preloader";
+import ScrollToButtonButton from "@/components/scroll-to-top-button";
+import { getMainMenu } from "@/lib/api";
 
 import "bootstrap/dist/css/bootstrap.css";
-import "@/css/lineicons.css";
 
+import "@/css/lineicons.css";
 import "@/css/tiny-slider.min.css";
 import "@/css/main.css";
 
-function MyApp({ Component, pageProps, mainMenu }) {
+function MyApp({ Component, mainMenu, pageProps }) {
   const [isLoading, setIsLoading] = useState(false);
   const router = useRouter();
   const authToken = process.env.NEXT_PUBLIC_BUTTER_CMS_API_KEY;
@@ -60,19 +58,25 @@ function MyApp({ Component, pageProps, mainMenu }) {
     <>
       <Head>
         <meta charSet="utf-8" />
-        <meta httpEquiv="x-ua-compatible" content="ie=edge" />
+        <meta
+          content="ie=edge"
+          httpEquiv="x-ua-compatible"
+        />
         <title>
           Sample Landing Page with Components - powered by ButterCMS
         </title>
         <meta
-          name="description"
           content="Sample Landing Page with Components - powered by ButterCMS"
+          name="description"
         />
-        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <meta
+          content="width=device-width, initial-scale=1"
+          name="viewport"
+        />
         <link
+          href="https://buttercms.com/static/v2/images/favicon.png"
           rel="shortcut icon"
           type="image/x-icon"
-          href="https://buttercms.com/static/v2/images/favicon.png"
         />
       </Head>
 

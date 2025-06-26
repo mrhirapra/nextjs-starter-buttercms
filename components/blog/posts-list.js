@@ -6,15 +6,15 @@ export default function PostsList({ posts }) {
       <div className="row">
         {posts.map((post) => (
           <PostsPreview
-            key={post.slug}
-            title={post.title}
-            coverImage={post.featuredImage}
-            date={post.published}
             author={post.author}
-            slug={post.slug}
-            excerpt={post.summary}
+            coverImage={post.featuredImage}
             coverImageAlt={post.featuredImageAlt}
+            date={post.published}
+            excerpt={post.summary}
+            key={post.slug}
+            slug={post.slug}
             tags={post.tags}
+            title={post.title}
           />
         ))}
         {!posts.length && <div>No blog posts found.</div>}

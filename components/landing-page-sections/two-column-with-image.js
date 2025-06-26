@@ -1,31 +1,35 @@
 import Image from "next/image";
+import Link from "next/link";
 
 export default function TwoColumnWithImage({
-  headline,
-  subheadline,
   buttonLabel,
   buttonUrl,
+  headline,
   image,
   imagePosition,
   scrollAnchorId,
+  subheadline,
 }) {
   return (
-    <section id={scrollAnchorId} className="cta-section">
+    <section
+      className="cta-section"
+      id={scrollAnchorId}
+    >
       <div className="container">
         <div className="row">
           {image && imagePosition === "left" && (
             <div className="col-lg-6 order-last order-lg-first">
               <div className="left-image cta-image ">
                 <Image
-                  src={image}
-                  height={400}
-                  width={600}
                   alt=""
+                  height={400}
                   sizes="100vw"
+                  src={image}
                   style={{
-                    width: "100%",
                     height: "auto",
+                    width: "100%",
                   }}
+                  width={600}
                 />
               </div>
             </div>
@@ -36,27 +40,27 @@ export default function TwoColumnWithImage({
                 <h2 className="mb-20">{headline}</h2>
                 <div dangerouslySetInnerHTML={{ __html: subheadline }} />
               </div>
-              <a
-                href={buttonUrl}
+              <Link
                 className="main-btn btn-hover border-btn mt-30"
+                href={buttonUrl}
               >
                 {buttonLabel}
-              </a>
+              </Link>
             </div>
           </div>
           {image && imagePosition === "right" && (
             <div className="col-lg-6">
               <div className="right-image cta-image text-lg-end">
                 <Image
-                  src={image}
-                  height={400}
-                  width={600}
                   alt=""
+                  height={400}
                   sizes="100vw"
+                  src={image}
                   style={{
-                    width: "100%",
                     height: "auto",
+                    width: "100%",
                   }}
+                  width={600}
                 />
               </div>
             </div>
