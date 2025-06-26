@@ -168,9 +168,6 @@ export default function BlogPost({ categories, post }) {
 
 export async function getStaticProps({ params }) {
   try {
-    // const post = await getPost(params.slug);
-    // const categories = await getCategories();
-    //  TODO: test
     const [post, categories] = await Promise.all([
       getPost(params.slug),
       getCategories(),

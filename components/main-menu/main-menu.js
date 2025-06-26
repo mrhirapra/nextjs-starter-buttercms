@@ -9,7 +9,6 @@ export default function ManiMenu({ mainMenuLinks }) {
 
   function highlightLinks() {
     const sections = document.querySelectorAll(".page-scroll");
-    // TODO: check
     const scrollPos =
       window.scrollY ||
       document.documentElement.scrollTop ||

@@ -52,9 +52,6 @@ export default function Category({ categories, posts, slug }) {
 
 export async function getStaticProps({ params: { slug } }) {
   try {
-    // const blogPosts = (await getPostsData({ category: slug })).posts;
-    // const categories = await getCategories();
-    // TODO: test
     const [blogPosts, categories] = await Promise.all([
       getPostsData({ category: slug }),
       getCategories(),

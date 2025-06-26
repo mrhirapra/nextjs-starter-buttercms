@@ -10,7 +10,6 @@ export default function HeaderSection({ mainMenu }) {
 
   function fixNavBar() {
     if (navbarAreaEl.current) {
-      // TODO: test
       setIsNavbarSticky(window.scrollY > navbarAreaEl.current.offsetTop);
     }
   }

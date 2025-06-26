@@ -11,7 +11,10 @@ import SearchWidget from "@/components/blog/search-widget";
 export default function Search({ categories, posts, query }) {
   return (
     <>
-      <section className="blog-roll-nav">
+      <section
+        className="blog-roll-nav"
+        id="blog-roll"
+      >
         <div className="container">
           <div className="row justify-content-center">
             <div className="col-12">
@@ -48,9 +51,6 @@ export default function Search({ categories, posts, query }) {
 }
 
 export async function getServerSideProps({ query: { query } }) {
-  // const blogPosts = await searchPosts({ query });
-  // const categories = await getCategories();
-  // TODO: test
   const [blogPosts, categories] = await Promise.all([
     searchPosts({ query }),
     getCategories(),

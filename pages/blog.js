@@ -52,14 +52,10 @@ export async function getStaticProps() {
 
   if (butterToken) {
     try {
-      // TODO: test
       const [blogPosts, categories] = await Promise.all([
         getPostsData(),
         getCategories(),
       ]);
-      // const blogPosts = (await getPostsData()).posts;
-      // const categories = await getCategories();
-
       return { props: { categories, posts: camelcaseKeys(blogPosts.posts) } };
     } catch (e) {
       console.log("Could not get posts", e);
